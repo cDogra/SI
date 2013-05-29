@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+  	
+		var w = 100000;
+		var h = 100000;
+        
+		var dataset= 	[
+							{ "ID":1, "name":"Finch", "r": 101940/6130, "x":400*2, "y":38*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":2, "name":"North York", "r":27600/6130, "x":400*2, "y":56*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":3, "name":"Sheppard", "r":75190/6130, "x":400*2, "y":82*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":4, "name":"York Mills", "r":28400/6130, "x":400*2, "y":110*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":5, "name":"Lawrence", "r":25040/6130, "x":400*2, "y":138*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":6, "name":"Eglinton", "r":79670/6130, "x":400*2, "y":168*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":7, "name":"Davisville", "r":24560/6130, "x":400*2, "y":189*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":8, "name":"St.Clair", "r":40480/6130, "x":400*2, "y":211*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":9, "name":"Summerhill", "r":6260/6130, "x":400*2, "y":232*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":10, "name":"Rosedale", "r":8060/6130, "x":400*2, "y":253*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":11, "name":"Bloor", "r":212550/6130, "x":400*2, "y":283*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":12, "name":"Wellesley", "r":22640/6130, "x":400*2, "y":317*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":13, "name":"College", "r":54180/6130, "x":400*2, "y":343*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":14, "name":"Dundas", "r":67620/6130, "x":400*2, "y":369*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":15, "name":"Queen", "r":58070/6130, "x":400*2, "y":394*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":16, "name":"King", "r":54120/6130, "x":400*2, "y":416*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":17, "name":"Union", "r":102540/6130, "x":347*2, "y":430*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":18, "name":"St.Andrew", "r":49930/6130, "x":293*2, "y":417*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":19, "name":"Osgoode", "r":20960/6130, "x":293*2, "y":393*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":20, "name":"St.Patrick", "r":31670/6130, "x":293*2, "y":368*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":21, "name":"Queens Park", "r":47200/6130, "x":293*2, "y":342*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":22, "name":"Museum", "r":8590/6130, "x":293*2, "y":316*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":23, "name":"St.George", "r":128000/6130, "x":293*2, "y":277*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":24, "name":"Dupont", "r":17660/6130, "x":260*2, "y":271*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":25, "name":"Spadina", "r":13500/6130, "x":260*2, "y":243*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":26, "name":"St.Clair West", "r":29810/6130, "x":231*2, "y":211*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":27, "name":"Eglinton West", "r":21510/6130, "x":200*2, "y":175*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":28, "name":"Glencairn", "r":6130/6130, "x":200*2, "y":156*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":29, "name":"Lawrence West", "r":21940/6130, "x":200*2, "y":138*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":30, "name":"Yorkdale", "r":25830/6130, "x":200*2, "y":120*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":31, "name":"Wilson", "r":19620/6130, "x":200*2, "y":101*2, "colour": "gold", "textcol" : "orange"},
+							{ "ID":32, "name":"Downsview", "r":38710/6130, "x":200*2, "y":83*2, "colour": "gold", "textcol" : "orange"}
+													
+						];
+						
+						var svg = d3	.select("body")
+										.append("svg")
+										.attr("width", w)
+										.attr("height", h)
+//Step 4      							.on("mouseup", function(){d3.selectAll("line").attr("stroke","gold");});
+										
+/*Step 5				var tooltip = d3.select("body")
+										.append("text")
+										.style("position", "absolute")
+										.style("z-index", "10")
+										.style("visibility", "hidden")
+										.attr("font-family", "sans-serif")
+										.attr("font-size", "13px")
+										.attr("fill", "black")
+										.text("para");
+Step 5*/										
+						for (var i = 0; i<31; i++){
+						
+						svg	.append("line")
+							.attr("x1", function(){return dataset[i].x;})
+							.attr("y1", function(){return dataset[i].y;})
+							.attr("x2", function(){return dataset[i+1].x;})
+							.attr("y2", function(){return dataset[i+1].y;})
+							.attr("id", function(){return "L" + "C" + dataset[i].ID + "_" + "C" + dataset[i+1].ID;})
+							.attr("stroke", function(){return dataset[i].colour;})
+							.attr("stroke-width", "5");}
+							
+						svg	.selectAll("circle")
+							.data(dataset)
+							.enter()
+							.append("circle")
+							.attr("cx", function(d){return d.x;})
+							.attr("cy", function(d) {return d.y;})
+							.attr("r", function(d) {return d.r;})
+							.attr("id", function(d) {return "C" + d.ID;})
+							.style("fill", "black")
+							.style("font-weight", "bold")
+/*Step 3					.on("mouseover", function(){d3.select(this).style("fill", "gold";});
+									//					return tooltip.style("visibility", "visible").text("Daily Ridership: " + parseInt(d3.select(this).attr("r")*6130));
+														})
+				//Step 5	.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+						    .on("mouseout", function(){d3.select(this).style("fill","black");
+									//Step 5		   return tooltip.style("visibility", "hidden");
+													  })
+							.on("mousedown", function(){d3.select("#L" + d3.select(this).attr("id") + "_" + "C" + (parseInt(d3.select(this).attr("id").substr(1))+1))
+														.attr("stroke","black");
+														d3.select("#L" + "C" + (parseInt(d3.select(this).attr("id").substr(1)) - 1) + "_" + d3.select(this).attr("id"))
+														.attr("stroke","black");
+														});
+Step 3*/						
+						var fontsize = 12
+						svg	.selectAll("text")
+							.data(dataset)
+							.enter()
+							.append("text")
+							.text(function(d) {return d.name;})
+							.attr("x", function(d){return d.x + d.r + 2;})
+							.attr("y", function(d) {return d.y + fontsize/2;})
+							.attr("font-family", "sans-serif")
+							.attr("font-size", fontsize + "px")
+							.attr("fill", "black")
+							.attr("id", function(d) {return "T" + d.ID;});			
+										
+						
+											
+								
+						
+						
+		
+		
+				
+        </script>
+    </body>
+</html>
